@@ -7,7 +7,7 @@ namespace clempaul.Dreamhost
 {
     public class ListRegistrationsItem
     {
-		
+
         private string _account_id;
         private string _domain;
         private DateTime _expires;
@@ -186,223 +186,223 @@ namespace clempaul.Dreamhost
         }
 
 
-public string billing_org
-{
-  get { return _billing_org; }
-  set { _billing_org = value; }
-}
+        public string billing_org
+        {
+            get { return _billing_org; }
+            set { _billing_org = value; }
+        }
 
-public string billing
-{
-  get { return _billing; }
-  set { _billing = value; }
-}
+        public string billing
+        {
+            get { return _billing; }
+            set { _billing = value; }
+        }
 
-public string tech_email
-{
-  get { return _tech_email; }
-  set { _tech_email = value; }
-}
+        public string tech_email
+        {
+            get { return _tech_email; }
+            set { _tech_email = value; }
+        }
 
-public string tech_fax
-{
-  get { return _tech_fax; }
-  set { _tech_fax = value; }
-}
+        public string tech_fax
+        {
+            get { return _tech_fax; }
+            set { _tech_fax = value; }
+        }
 
-public string tech_phone
-{
-  get { return _tech_phone; }
-  set { _tech_phone = value; }
-}
+        public string tech_phone
+        {
+            get { return _tech_phone; }
+            set { _tech_phone = value; }
+        }
 
-public string tech_country
-{
-  get { return _tech_country; }
-  set { _tech_country = value; }
-}
+        public string tech_country
+        {
+            get { return _tech_country; }
+            set { _tech_country = value; }
+        }
 
-public string tech_zip
-{
-  get { return _tech_zip; }
-  set { _tech_zip = value; }
-}
+        public string tech_zip
+        {
+            get { return _tech_zip; }
+            set { _tech_zip = value; }
+        }
 
-public string tech_state
-{
-  get { return _tech_state; }
-  set { _tech_state = value; }
-}
+        public string tech_state
+        {
+            get { return _tech_state; }
+            set { _tech_state = value; }
+        }
 
-public string tech_city
-{
-  get { return _tech_city; }
-  set { _tech_city = value; }
-}
+        public string tech_city
+        {
+            get { return _tech_city; }
+            set { _tech_city = value; }
+        }
 
-public string tech_street2
-{
-  get { return _tech_street2; }
-  set { _tech_street2 = value; }
-}
+        public string tech_street2
+        {
+            get { return _tech_street2; }
+            set { _tech_street2 = value; }
+        }
 
-public string tech_street1
-{
-  get { return _tech_street1; }
-  set { _tech_street1 = value; }
-}
+        public string tech_street1
+        {
+            get { return _tech_street1; }
+            set { _tech_street1 = value; }
+        }
 
-public string tech_org
-{
-  get { return _tech_org; }
-  set { _tech_org = value; }
-}
+        public string tech_org
+        {
+            get { return _tech_org; }
+            set { _tech_org = value; }
+        }
 
-public string tech
-{
-  get { return _tech; }
-  set { _tech = value; }
-}
+        public string tech
+        {
+            get { return _tech; }
+            set { _tech = value; }
+        }
 
-public string registrant_email
-{
-  get { return _registrant_email; }
-  set { _registrant_email = value; }
-}
+        public string registrant_email
+        {
+            get { return _registrant_email; }
+            set { _registrant_email = value; }
+        }
 
-public string registrant_fax
-{
-  get { return _registrant_fax; }
-  set { _registrant_fax = value; }
-}
+        public string registrant_fax
+        {
+            get { return _registrant_fax; }
+            set { _registrant_fax = value; }
+        }
 
-public string registrant_phone
-{
-  get { return _registrant_phone; }
-  set { _registrant_phone = value; }
-}
+        public string registrant_phone
+        {
+            get { return _registrant_phone; }
+            set { _registrant_phone = value; }
+        }
 
-public string registrant_country
-{
-  get { return _registrant_country; }
-  set { _registrant_country = value; }
-}
+        public string registrant_country
+        {
+            get { return _registrant_country; }
+            set { _registrant_country = value; }
+        }
 
-public string registrant_zip
-{
-  get { return _registrant_zip; }
-  set { _registrant_zip = value; }
-}
+        public string registrant_zip
+        {
+            get { return _registrant_zip; }
+            set { _registrant_zip = value; }
+        }
 
-public string registrant_state
-{
-  get { return _registrant_state; }
-  set { _registrant_state = value; }
-}
+        public string registrant_state
+        {
+            get { return _registrant_state; }
+            set { _registrant_state = value; }
+        }
 
-public string registrant_city
-{
-  get { return _registrant_city; }
-  set { _registrant_city = value; }
-}
+        public string registrant_city
+        {
+            get { return _registrant_city; }
+            set { _registrant_city = value; }
+        }
 
-public string registrant_street2
-{
-  get { return _registrant_street2; }
-  set { _registrant_street2 = value; }
-}
+        public string registrant_street2
+        {
+            get { return _registrant_street2; }
+            set { _registrant_street2 = value; }
+        }
 
-public string registrant_street1
-{
-  get { return _registrant_street1; }
-  set { _registrant_street1 = value; }
-}
+        public string registrant_street1
+        {
+            get { return _registrant_street1; }
+            set { _registrant_street1 = value; }
+        }
 
-public string registrant_org
-{
-  get { return _registrant_org; }
-  set { _registrant_org = value; }
-}
+        public string registrant_org
+        {
+            get { return _registrant_org; }
+            set { _registrant_org = value; }
+        }
 
-public string registrant
-{
-  get { return _registrant; }
-  set { _registrant = value; }
-}
+        public string registrant
+        {
+            get { return _registrant; }
+            set { _registrant = value; }
+        }
 
-public string ns4
-{
-  get { return _ns4; }
-  set { _ns4 = value; }
-}
+        public string ns4
+        {
+            get { return _ns4; }
+            set { _ns4 = value; }
+        }
 
-public string ns3
-{
-  get { return _ns3; }
-  set { _ns3 = value; }
-}
+        public string ns3
+        {
+            get { return _ns3; }
+            set { _ns3 = value; }
+        }
 
-public string ns2
-{
-  get { return _ns2; }
-  set { _ns2 = value; }
-}
+        public string ns2
+        {
+            get { return _ns2; }
+            set { _ns2 = value; }
+        }
 
-public string ns1
-{
-  get { return _ns1; }
-  set { _ns1 = value; }
-}
+        public string ns1
+        {
+            get { return _ns1; }
+            set { _ns1 = value; }
+        }
 
-public bool expired
-{
-  get { return _expired; }
-  set { _expired = value; }
-}
+        public bool expired
+        {
+            get { return _expired; }
+            set { _expired = value; }
+        }
 
-public bool locked
-{
-  get { return _locked; }
-  set { _locked = value; }
-}
+        public bool locked
+        {
+            get { return _locked; }
+            set { _locked = value; }
+        }
 
-public string autorenew
-{
-  get { return _autorenew; }
-  set { _autorenew = value; }
-}
+        public string autorenew
+        {
+            get { return _autorenew; }
+            set { _autorenew = value; }
+        }
 
-public DateTime modified
-{
-  get { return _modified; }
-  set { _modified = value; }
-}
+        public DateTime modified
+        {
+            get { return _modified; }
+            set { _modified = value; }
+        }
 
-public DateTime created
-{
-  get { return _created; }
-  set { _created = value; }
-}
+        public DateTime created
+        {
+            get { return _created; }
+            set { _created = value; }
+        }
 
-public DateTime expires
-{
-  get { return _expires; }
-  set { _expires = value; }
-}
+        public DateTime expires
+        {
+            get { return _expires; }
+            set { _expires = value; }
+        }
 
-public string domain
-{
-  get { return _domain; }
-  set { _domain = value; }
-}
+        public string domain
+        {
+            get { return _domain; }
+            set { _domain = value; }
+        }
 
 
-public string account_id
-{
-  get { return _account_id; }
-  set { _account_id = value; }
-}
+        public string account_id
+        {
+            get { return _account_id; }
+            set { _account_id = value; }
+        }
 
-        				
+
     }
 }
