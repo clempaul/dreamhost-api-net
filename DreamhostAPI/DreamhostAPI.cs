@@ -154,5 +154,21 @@ namespace clempaul
         }
 
         #endregion
+
+        #region Public Methods
+
+        public IEnumerable<String> ListAccessibleMethods()
+        {
+            XDocument response = this.SendCommand("api-list_accessible_cmds");
+
+            System.Diagnostics.Debug.WriteLine(response.Element("response").Elements("data").Count().ToString());
+
+            var domains = from data in response.Element("response").Elements("data")
+                          select data.Element("cmd").Value;
+
+            return domains;
+        }
+
+        #endregion
     }
 }
