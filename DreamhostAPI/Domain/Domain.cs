@@ -28,8 +28,6 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("domain-list_domains");
 
-            System.Diagnostics.Debug.WriteLine(response.Element("response").Elements("data").Count().ToString());
-
             var domains = from data in response.Element("response").Elements("data")
                           select new ListDomainsItem
                           {

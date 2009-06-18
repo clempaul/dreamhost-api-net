@@ -13,7 +13,7 @@ namespace clempaul
     public class DreamhostAPI
     {
         #region Private Variables
-        
+
         private string username = string.Empty;
         private string apikey = string.Empty;
         private Domain domain = null;
@@ -55,11 +55,12 @@ namespace clempaul
             return this.SendCommand(method, new QueryData[0]);
         }
 
-        internal XDocument SendCommand(string method, QueryData[] parameters) {
+        internal XDocument SendCommand(string method, QueryData[] parameters)
+        {
 
             XDocument response = this.GetResponse(method, parameters);
 
-            if ( !this.ValidResponse(response) ) 
+            if (!this.ValidResponse(response))
             {
                 throw new Exception(GetErrorCode(response));
             }
@@ -72,8 +73,10 @@ namespace clempaul
             return DreamhostAPI.ParseXMLElement(element, typeof(string));
         }
 
-        internal static object ParseXMLElement(XElement element, Type type) {
-            if ( type.Equals(typeof(bool)) ) {
+        internal static object ParseXMLElement(XElement element, Type type)
+        {
+            if (type.Equals(typeof(bool)))
+            {
                 if (element == null)
                 {
                     return false;
@@ -83,7 +86,8 @@ namespace clempaul
                     return !element.Value.Equals("0") && !element.Value.Equals("no");
                 }
             }
-            else if ( type.Equals(typeof(string)) ) {
+            else if (type.Equals(typeof(string)))
+            {
                 if (element == null)
                 {
                     return string.Empty;
@@ -161,12 +165,10 @@ namespace clempaul
         {
             XDocument response = this.SendCommand("api-list_accessible_cmds");
 
-            System.Diagnostics.Debug.WriteLine(response.Element("response").Elements("data").Count().ToString());
+            var cmds = from data in response.Element("response").Elements("data")
+                       select data.Element("cmd").Value;
 
-            var domains = from data in response.Element("response").Elements("data")
-                          select data.Element("cmd").Value;
-
-            return domains;
+            return cmds;
         }
 
         #endregion
