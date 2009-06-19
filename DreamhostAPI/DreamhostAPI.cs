@@ -17,6 +17,7 @@ namespace clempaul
         private string username = string.Empty;
         private string apikey = string.Empty;
         private Domain domain = null;
+        private DNS dns = null;
 
         #endregion
 
@@ -44,6 +45,19 @@ namespace clempaul
                 return this.domain;
             }
 
+        }
+
+        public DNS DNS
+        {
+            get
+            {
+                if (this.dns == null)
+                {
+                    this.dns = new DNS(this);
+                }
+
+                return this.dns;
+            }
         }
 
         #endregion
@@ -115,18 +129,31 @@ namespace clempaul
         internal XDocument GetResponse(string method, QueryData[] parameters)
         {
             string uri = "https://api.dreamhost.com/";
-            uri += "?username=" + this.username;
-            uri += "&key=" + this.apikey;
-            uri += "&unique_id=" + Guid.NewGuid();
-            uri += "&format=xml";
-            uri += "&cmd=" + method;
+
+            HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(uri);
+
+            wr.Method = "POST";
+            wr.ContentType = "application/x-www-form-urlencoded";
+
+            string postdata = string.Empty;
+
+            postdata += "username=" + Uri.EscapeDataString(this.username);
+            postdata += "&key=" + Uri.EscapeDataString(this.apikey);
+            postdata += "&unique_id=" + Uri.EscapeDataString(Guid.NewGuid().ToString());
+            postdata += "&format=xml";
+            postdata += "&cmd=" + Uri.EscapeDataString(method);
 
             foreach (QueryData parameter in parameters)
             {
-                uri += "&" + parameter.Key + "=" + parameter.Value;
+                postdata += "&" + Uri.EscapeDataString(parameter.Key) + "=" + Uri.EscapeDataString(parameter.Value);
             }
 
-            HttpWebRequest wr = (HttpWebRequest)HttpWebRequest.Create(uri);
+            wr.ContentLength = postdata.Length;
+            
+            StreamWriter stOut = new StreamWriter(wr.GetRequestStream(),System.Text.Encoding.ASCII);
+            stOut.Write(postdata);
+            stOut.Close();
+
             return XDocument.Parse("<response>" + new StreamReader(wr.GetResponse().GetResponseStream()).ReadToEnd() + "</response>");
         }
 

@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DNS\DNS.cs" />
+    <Compile Include="DNS\DNSRecord.cs" />
     <Compile Include="Domain\Domain.cs" />
     <Compile Include="Domain\ListDomainsItem.cs" />
     <Compile Include="Domain\ListRegistrationsItem.cs" />
