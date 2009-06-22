@@ -19,6 +19,7 @@ namespace clempaul
         private Domain domain = null;
         private DNS dns = null;
         private User user = null;
+        private Mail mail = null;
 
         #endregion
 
@@ -71,6 +72,19 @@ namespace clempaul
                 }
 
                 return this.user;
+            }
+        }
+
+        public Mail Mail
+        {
+            get
+            {
+                if (this.mail == null)
+                {
+                    this.mail = new Mail(this);
+                }
+
+                return this.mail;
             }
         }
 
