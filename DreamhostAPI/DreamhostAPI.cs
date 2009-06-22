@@ -18,6 +18,7 @@ namespace clempaul
         private string apikey = string.Empty;
         private Domain domain = null;
         private DNS dns = null;
+        private User user = null;
 
         #endregion
 
@@ -57,6 +58,19 @@ namespace clempaul
                 }
 
                 return this.dns;
+            }
+        }
+
+        public User User
+        {
+            get
+            {
+                if (this.user == null)
+                {
+                    this.user = new User(this);
+                }
+
+                return this.user;
             }
         }
 
@@ -120,6 +134,28 @@ namespace clempaul
                 else
                 {
                     return DateTime.Parse(element.Value);
+                }
+            }
+            else if (type.Equals(typeof(int)))
+            {
+                if (element == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return int.Parse(element.Value);
+                }
+            }
+            else if (type.Equals(typeof(double)))
+            {
+                if (element == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return double.Parse(element.Value);
                 }
             }
 
