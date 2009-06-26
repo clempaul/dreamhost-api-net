@@ -14,7 +14,6 @@ namespace clempaul
     {
         #region Private Variables
 
-        private string username = string.Empty;
         private string apikey = string.Empty;
         private Domain domain = null;
         private DNS dns = null;
@@ -25,9 +24,8 @@ namespace clempaul
 
         #region Constructor
 
-        public DreamhostAPI(string username, string apikey)
+        public DreamhostAPI(string apikey)
         {
-            this.username = username;
             this.apikey = apikey;
         }
 
@@ -187,8 +185,7 @@ namespace clempaul
 
             string postdata = string.Empty;
 
-            postdata += "username=" + Uri.EscapeDataString(this.username);
-            postdata += "&key=" + Uri.EscapeDataString(this.apikey);
+            postdata += "key=" + Uri.EscapeDataString(this.apikey);
             postdata += "&unique_id=" + Uri.EscapeDataString(Guid.NewGuid().ToString());
             postdata += "&format=xml";
             postdata += "&cmd=" + Uri.EscapeDataString(method);
