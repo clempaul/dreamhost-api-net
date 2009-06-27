@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace clempaul.Dreamhost
+namespace clempaul.Dreamhost.ResponseData
 {
-    public class ListRegistrationsItem
+    public class DomainRegistration
     {
 
         private string _account_id;

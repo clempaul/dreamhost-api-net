@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using clempaul.Dreamhost.ResponseData;
 
 namespace clempaul.Dreamhost
 {
-    public class DNS
+    public class DNSRequests
     {
 
         #region Internal Variables
@@ -17,7 +18,7 @@ namespace clempaul.Dreamhost
 
         #region Constructor
 
-        internal DNS(DreamhostAPI api)
+        internal DNSRequests(DreamhostAPI api)
         {
             this.api = api;
         }

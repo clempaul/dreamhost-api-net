@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using clempaul.Dreamhost.ResponseData;
 
 namespace clempaul.Dreamhost
 {
-    public class Mail
+    public class MailRequests
     {
         private DreamhostAPI api;
 
-        internal Mail(DreamhostAPI api)
+        internal MailRequests(DreamhostAPI api)
         {
             this.api = api;
         }

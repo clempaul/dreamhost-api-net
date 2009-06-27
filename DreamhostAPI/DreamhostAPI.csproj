@@ -45,18 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DNS\DNS.cs" />
+    <Compile Include="DNS\DNSRequests.cs" />
     <Compile Include="DNS\DNSRecord.cs" />
+    <Compile Include="Domain\DomainRequests.cs" />
     <Compile Include="Domain\Domain.cs" />
-    <Compile Include="Domain\ListDomainsItem.cs" />
-    <Compile Include="Domain\ListRegistrationsItem.cs" />
+    <Compile Include="Domain\DomainRegistration.cs" />
     <Compile Include="DreamhostAPI.cs" />
-    <Compile Include="Mail\Mail.cs" />
+    <Compile Include="Mail\MailRequests.cs" />
     <Compile Include="Mail\MailFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryData.cs" />
+    <Compile Include="User\UserRequests.cs" />
     <Compile Include="User\User.cs" />
-    <Compile Include="User\UserItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

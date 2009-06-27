@@ -2,58 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
 
-namespace clempaul.Dreamhost
+namespace clempaul.Dreamhost.ResponseData
 {
     public class User
     {
-        private DreamhostAPI api;
+        private string _account_id;
 
-        internal User(DreamhostAPI api)
+        public string account_id
         {
-            this.api = api;
+            get { return _account_id; }
+            set { _account_id = value; }
         }
 
-        public IEnumerable<UserItem> ListUsers()
+        private string _username;
+
+        public string username
         {
-            XDocument response = api.SendCommand("user-list_users");
-
-            var users = from data in response.Element("response").Elements("data")
-                        select new UserItem
-                        {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            username = (string)DreamhostAPI.ParseXMLElement(data.Element("username")),
-                            type = (string)DreamhostAPI.ParseXMLElement(data.Element("type")),
-                            shell = (string)DreamhostAPI.ParseXMLElement(data.Element("shell")),
-                            home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                            password = (string)DreamhostAPI.ParseXMLElement(data.Element("password")),
-                            disk_user_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("disk_used_mb"), typeof(double)),
-                            quota_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("quota_mb"), typeof(double)),
-                            gecos = (string)DreamhostAPI.ParseXMLElement(data.Element("gecos")),
-                        };
-
-            return users;
+            get { return _username; }
+            set { _username = value; }
         }
 
-        public IEnumerable<UserItem> ListUsersNoPw()
+        private string _type;
+
+        public string type
         {
-            XDocument response = api.SendCommand("user-list_users_no_pw");
+            get { return _type; }
+            set { _type = value; }
+        }
 
-            var users = from data in response.Element("response").Elements("data")
-                        select new UserItem
-                        {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            username = (string)DreamhostAPI.ParseXMLElement(data.Element("username")),
-                            type = (string)DreamhostAPI.ParseXMLElement(data.Element("type")),
-                            shell = (string)DreamhostAPI.ParseXMLElement(data.Element("shell")),
-                            home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                            disk_user_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("disk_used_mb"), typeof(double)),
-                            quota_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("quota_mb"), typeof(double)),
-                            gecos = (string)DreamhostAPI.ParseXMLElement(data.Element("gecos")),
-                        };
+        private string _shell;
 
-            return users;
+        public string shell
+        {
+            get { return _shell; }
+            set { _shell = value; }
+        }
+
+        private string _home;
+
+        public string home
+        {
+            get { return _home; }
+            set { _home = value; }
+        }
+
+        private string _password;
+
+        public string password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
+
+        private double _disk_user_mb;
+
+        public double disk_user_mb
+        {
+            get { return _disk_user_mb; }
+            set { _disk_user_mb = value; }
+        }
+
+        private double _quota_mb;
+
+        public double quota_mb
+        {
+            get { return _quota_mb; }
+            set { _quota_mb = value; }
+        }
+
+        private string _gecos;
+
+        public string gecos
+        {
+            get { return _gecos; }
+            set { _gecos = value; }
         }
     }
 }

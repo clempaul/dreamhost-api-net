@@ -15,10 +15,10 @@ namespace clempaul
         #region Private Variables
 
         private string apikey = string.Empty;
-        private Domain domain = null;
-        private DNS dns = null;
-        private User user = null;
-        private Mail mail = null;
+        private DomainRequests domain = null;
+        private DNSRequests dns = null;
+        private UserRequests user = null;
+        private MailRequests mail = null;
 
         #endregion
 
@@ -33,13 +33,13 @@ namespace clempaul
 
         #region Accessors
 
-        public Domain Domain
+        public DomainRequests Domain
         {
             get
             {
                 if (this.domain == null)
                 {
-                    this.domain = new Domain(this);
+                    this.domain = new DomainRequests(this);
                 }
 
                 return this.domain;
@@ -47,39 +47,39 @@ namespace clempaul
 
         }
 
-        public DNS DNS
+        public DNSRequests DNS
         {
             get
             {
                 if (this.dns == null)
                 {
-                    this.dns = new DNS(this);
+                    this.dns = new DNSRequests(this);
                 }
 
                 return this.dns;
             }
         }
 
-        public User User
+        public UserRequests User
         {
             get
             {
                 if (this.user == null)
                 {
-                    this.user = new User(this);
+                    this.user = new UserRequests(this);
                 }
 
                 return this.user;
             }
         }
 
-        public Mail Mail
+        public MailRequests Mail
         {
             get
             {
                 if (this.mail == null)
                 {
-                    this.mail = new Mail(this);
+                    this.mail = new MailRequests(this);
                 }
 
                 return this.mail;
