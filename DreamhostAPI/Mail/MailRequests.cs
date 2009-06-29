@@ -36,5 +36,38 @@ namespace clempaul.Dreamhost
 
             return users;
         }
+
+
+        public void AddFilter(string address, string filter_on, string filter, string action, string action_value, string contains, string stop, string rank)
+        {
+            QueryData[] parameters = {
+                                         new QueryData("address", address),
+                                         new QueryData("filter_on", filter_on),
+                                         new QueryData("filter", filter),
+                                         new QueryData("action", action),
+                                         new QueryData("action_value", action_value),
+                                         new QueryData("contains", contains),
+                                         new QueryData("stop", stop),
+                                         new QueryData("rank", rank)
+                                     };
+
+            api.SendCommand("mail-add_filter", parameters);
+        }
+
+        public void RemoveFilter(string address, string filter_on, string filter, string action, string action_value, string contains, string stop, string rank)
+        {
+            QueryData[] parameters = {
+                                         new QueryData("address", address),
+                                         new QueryData("filter_on", filter_on),
+                                         new QueryData("filter", filter),
+                                         new QueryData("action", action),
+                                         new QueryData("action_value", action_value),
+                                         new QueryData("contains", contains),
+                                         new QueryData("stop", stop),
+                                         new QueryData("rank", rank)
+                                     };
+
+            api.SendCommand("mail-remove_filter", parameters);
+        }
     }
 }
