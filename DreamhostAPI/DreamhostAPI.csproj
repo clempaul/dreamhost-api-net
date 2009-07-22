@@ -35,6 +35,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -45,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnouncementList\AnnouncementList.cs" />
+    <Compile Include="AnnouncementList\AnnouncementListRequests.cs" />
+    <Compile Include="AnnouncementList\AnnouncementListSubscriber.cs" />
     <Compile Include="DNS\DNSRequests.cs" />
     <Compile Include="DNS\DNSRecord.cs" />
     <Compile Include="Domain\DomainRequests.cs" />
@@ -53,6 +58,10 @@
     <Compile Include="DreamhostAPI.cs" />
     <Compile Include="Mail\MailRequests.cs" />
     <Compile Include="Mail\MailFilter.cs" />
+    <Compile Include="MySQL\DB.cs" />
+    <Compile Include="MySQL\DBHostname.cs" />
+    <Compile Include="MySQL\DBUser.cs" />
+    <Compile Include="MySQL\MySQLRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryData.cs" />
     <Compile Include="User\UserRequests.cs" />

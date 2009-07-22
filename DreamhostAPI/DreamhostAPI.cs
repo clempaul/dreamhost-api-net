@@ -19,6 +19,8 @@ namespace clempaul
         private DNSRequests dns = null;
         private UserRequests user = null;
         private MailRequests mail = null;
+        private MySQLRequests mysql = null;
+        private AnnouncementListRequests announcementlist = null;
 
         #endregion
 
@@ -83,6 +85,32 @@ namespace clempaul
                 }
 
                 return this.mail;
+            }
+        }
+
+        public MySQLRequests MySQL
+        {
+            get
+            {
+                if (this.mysql == null)
+                {
+                    this.mysql = new MySQLRequests(this);
+                }
+
+                return this.mysql;
+            }
+        }
+
+        public AnnouncementListRequests AnnouncementList
+        {
+            get
+            {
+                if (this.announcementlist == null)
+                {
+                    this.announcementlist = new AnnouncementListRequests(this);
+                }
+
+                return this.announcementlist;
             }
         }
 
