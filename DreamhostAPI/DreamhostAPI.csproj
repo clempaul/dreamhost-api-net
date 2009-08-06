@@ -63,6 +63,12 @@
     <Compile Include="MySQL\DBUser.cs" />
     <Compile Include="MySQL\MySQLRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PS\ActivePS.cs" />
+    <Compile Include="PS\PendingPS.cs" />
+    <Compile Include="PS\PSRequests.cs" />
+    <Compile Include="PS\PSSettings.cs" />
+    <Compile Include="PS\PSSize.cs" />
+    <Compile Include="PS\PSUsage.cs" />
     <Compile Include="QueryData.cs" />
     <Compile Include="User\UserRequests.cs" />
     <Compile Include="User\User.cs" />
