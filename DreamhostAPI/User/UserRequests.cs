@@ -20,18 +20,18 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("user-list_users");
 
-            var users = from data in response.Element("response").Elements("data")
+            var users = from data in response.Element("dreamhost").Elements("data")
                         select new User
                         {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            username = (string)DreamhostAPI.ParseXMLElement(data.Element("username")),
-                            type = (string)DreamhostAPI.ParseXMLElement(data.Element("type")),
-                            shell = (string)DreamhostAPI.ParseXMLElement(data.Element("shell")),
-                            home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                            password = (string)DreamhostAPI.ParseXMLElement(data.Element("password")),
-                            disk_user_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("disk_used_mb"), typeof(double)),
-                            quota_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("quota_mb"), typeof(double)),
-                            gecos = (string)DreamhostAPI.ParseXMLElement(data.Element("gecos")),
+                            account_id = data.Element("account_id").AsString(),
+                            username = data.Element("username").AsString(),
+                            type = data.Element("type").AsString(),
+                            shell = data.Element("shell").AsString(),
+                            home = data.Element("home").AsString(),
+                            password = data.Element("password").AsString(),
+                            disk_user_mb = data.Element("disk_used_mb").AsDouble(),
+                            quota_mb = data.Element("quota_mb").AsDouble(),
+                            gecos = data.Element("gecos").AsString(),
                         };
 
             return users;
@@ -41,17 +41,17 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("user-list_users_no_pw");
 
-            var users = from data in response.Element("response").Elements("data")
+            var users = from data in response.Element("dreamhost").Elements("data")
                         select new User
                         {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            username = (string)DreamhostAPI.ParseXMLElement(data.Element("username")),
-                            type = (string)DreamhostAPI.ParseXMLElement(data.Element("type")),
-                            shell = (string)DreamhostAPI.ParseXMLElement(data.Element("shell")),
-                            home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                            disk_user_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("disk_used_mb"), typeof(double)),
-                            quota_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("quota_mb"), typeof(double)),
-                            gecos = (string)DreamhostAPI.ParseXMLElement(data.Element("gecos")),
+                            account_id = data.Element("account_id").AsString(),
+                            username = data.Element("username").AsString(),
+                            type = data.Element("type").AsString(),
+                            shell = data.Element("shell").AsString(),
+                            home = data.Element("home").AsString(),
+                            disk_user_mb = data.Element("disk_used_mb").AsDouble(),
+                            quota_mb = data.Element("quota_mb").AsDouble(),
+                            gecos = data.Element("gecos").AsString(),
                         };
 
             return users;

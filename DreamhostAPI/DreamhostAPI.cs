@@ -136,71 +136,71 @@ namespace clempaul
             return this.GetResponse(method, parameters);
         }
 
-        internal static object ParseXMLElement(XElement element)
-        {
-            return DreamhostAPI.ParseXMLElement(element, typeof(string));
-        }
+        //internal static object ParseXMLElement(XElement element)
+        //{
+        //    return DreamhostAPI.ParseXMLElement(element, typeof(string));
+        //}
 
-        internal static object ParseXMLElement(XElement element, Type type)
-        {
-            if (type.Equals(typeof(bool)))
-            {
-                if (element == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return !element.Value.Equals("0") && !element.Value.Equals("no");
-                }
-            }
-            else if (type.Equals(typeof(string)))
-            {
-                if (element == null)
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return element.Value;
-                }
-            }
-            else if (type.Equals(typeof(DateTime)))
-            {
-                if (element == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return DateTime.Parse(element.Value);
-                }
-            }
-            else if (type.Equals(typeof(int)))
-            {
-                if (element == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return int.Parse(element.Value);
-                }
-            }
-            else if (type.Equals(typeof(double)))
-            {
-                if (element == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return double.Parse(element.Value);
-                }
-            }
+        //internal static object ParseXMLElement(XElement element, Type type)
+        //{
+        //    if (type.Equals(typeof(bool)))
+        //    {
+        //        if (element == null)
+        //        {
+        //            return false;
+        //        }
+        //        else
+        //        {
+        //            return !element.Value.Equals("0") && !element.Value.Equals("no");
+        //        }
+        //    }
+        //    else if (type.Equals(typeof(string)))
+        //    {
+        //        if (element == null)
+        //        {
+        //            return string.Empty;
+        //        }
+        //        else
+        //        {
+        //            return element.Value;
+        //        }
+        //    }
+        //    else if (type.Equals(typeof(DateTime)))
+        //    {
+        //        if (element == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return DateTime.Parse(element.Value);
+        //        }
+        //    }
+        //    else if (type.Equals(typeof(int)))
+        //    {
+        //        if (element == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return int.Parse(element.Value);
+        //        }
+        //    }
+        //    else if (type.Equals(typeof(double)))
+        //    {
+        //        if (element == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return double.Parse(element.Value);
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         internal XDocument GetResponse(string method, QueryData[] parameters)
         {
@@ -229,12 +229,12 @@ namespace clempaul
             stOut.Write(postdata);
             stOut.Close();
 
-            return XDocument.Parse("<response>" + new StreamReader(wr.GetResponse().GetResponseStream()).ReadToEnd() + "</response>");
+            return XDocument.Parse(new StreamReader(wr.GetResponse().GetResponseStream()).ReadToEnd());
         }
 
         internal Boolean ValidResponse(XDocument response)
         {
-            var query = from c in response.Elements("response").Elements("result") select c.Value;
+            var query = from c in response.Elements("dreamhost").Elements("result") select c.Value;
 
             foreach (string result in query)
             {
@@ -249,7 +249,7 @@ namespace clempaul
 
         internal string GetErrorCode(XDocument response)
         {
-            var query = from c in response.Elements("response").Elements("data") select c.Value;
+            var query = from c in response.Elements("dreamhost").Elements("data") select c.Value;
 
             foreach (string result in query)
             {
@@ -267,8 +267,8 @@ namespace clempaul
         {
             XDocument response = this.SendCommand("api-list_accessible_cmds");
 
-            var cmds = from data in response.Element("response").Elements("data")
-                       select data.Element("cmd").Value;
+            var cmds = from data in response.Element("dreamhost").Elements("data")
+                       select data.Element("cmd").AsString();
 
             return cmds;
         }

@@ -20,18 +20,18 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("mail-list_filters");
 
-            var users = from data in response.Element("response").Elements("data")
+            var users = from data in response.Element("dreamhost").Elements("data")
                         select new MailFilter
                         {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            address = (string)DreamhostAPI.ParseXMLElement(data.Element("address")),
-                            rank = (int)DreamhostAPI.ParseXMLElement(data.Element("rank"), typeof(int)),
-                            filter = (string)DreamhostAPI.ParseXMLElement(data.Element("filter")),
-                            filter_on = (string)DreamhostAPI.ParseXMLElement(data.Element("filter_on")),
-                            action = (string)DreamhostAPI.ParseXMLElement(data.Element("action")),
-                            action_value = (string)DreamhostAPI.ParseXMLElement(data.Element("action_value")),
-                            contains = (bool)DreamhostAPI.ParseXMLElement(data.Element("contains"), typeof(bool)),
-                            stop = (bool)DreamhostAPI.ParseXMLElement(data.Element("stop"), typeof(bool)),
+                            account_id = data.Element("account_id").AsString(),
+                            address = data.Element("address").AsString(),
+                            rank = data.Element("rank").AsInt(),
+                            filter = data.Element("filter").AsString(),
+                            filter_on = data.Element("filter_on").AsString(),
+                            action = data.Element("action").AsString(),
+                            action_value = data.Element("action_value").AsString(),
+                            contains = data.Element("contains").AsBool(),
+                            stop = data.Element("stop").AsBool()
                         };
 
             return users;

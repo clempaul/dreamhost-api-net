@@ -20,16 +20,16 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("announcement_list-list_lists");
 
-            var lists = from data in response.Element("response").Elements("data")
+            var lists = from data in response.Element("dreamhost").Elements("data")
                         select new AnnouncementList
                         {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            listname = (string)DreamhostAPI.ParseXMLElement(data.Element("listname")),
-                            domain = (string)DreamhostAPI.ParseXMLElement(data.Element("domain")),
-                            name = (string)DreamhostAPI.ParseXMLElement(data.Element("name")),
-                            start_date = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("start_date"), typeof(DateTime)),
-                            max_bounces = (int)DreamhostAPI.ParseXMLElement(data.Element("max_bounces"), typeof(int)),
-                            num_subscribers = (int)DreamhostAPI.ParseXMLElement(data.Element("num_subscribers"), typeof(int))
+                            account_id = data.Element("account_id").AsString(),
+                            listname = data.Element("listname").AsString(),
+                            domain = data.Element("domain").AsString(),
+                            name = data.Element("name").AsString(),
+                            start_date = data.Element("start_date").AsDateTime(),
+                            max_bounces = data.Element("max_bounces").AsInt(),
+                            num_subscribers = data.Element("num_subscribers").AsInt()
                         };
 
             return lists;
@@ -44,14 +44,14 @@ namespace clempaul.Dreamhost
 
             XDocument response = api.SendCommand("announcement_list-list_subscribers", parameters);
 
-            var subscribers = from data in response.Element("response").Elements("data")
+            var subscribers = from data in response.Element("dreamhost").Elements("data")
                               select new AnnouncementListSubscriber
                               {
-                                  email = (string)DreamhostAPI.ParseXMLElement(data.Element("email")),
-                                  confirmed = (bool)DreamhostAPI.ParseXMLElement(data.Element("confirmed"), typeof(bool)),
-                                  subscribe_date = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("subscribe_date"), typeof(DateTime)),
-                                  name = (string)DreamhostAPI.ParseXMLElement(data.Element("name")),
-                                  num_bounces = (int)DreamhostAPI.ParseXMLElement(data.Element("num_bounces"), typeof(int))
+                                  email = data.Element("email").AsString(),
+                                  confirmed = data.Element("confirmed").AsBool(),
+                                  subscribe_date = data.Element("subscribe_date").AsDateTime(),
+                                  name = data.Element("name").AsString(),
+                                  num_bounces = data.Element("num_bounces").AsInt()
                               };
 
             return subscribers;

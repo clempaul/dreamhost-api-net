@@ -20,14 +20,14 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("mysql-list_dbs");
             
-            var dbs = from data in response.Element("response").Elements("data")
+            var dbs = from data in response.Element("dreamhost").Elements("data")
                       select new DB
                       {
-                          account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                          db = (string)DreamhostAPI.ParseXMLElement(data.Element("db")),
-                          description = (string)DreamhostAPI.ParseXMLElement(data.Element("description")),
-                          home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                          disk_usage_mb = (double)DreamhostAPI.ParseXMLElement(data.Element("disk_usage_mb"), typeof(double))
+                          account_id = data.Element("account_id").AsString(),
+                          db = data.Element("db").AsString(),
+                          description = data.Element("description").AsString(),
+                          home = data.Element("home").AsString(),
+                          disk_usage_mb = data.Element("disk_usage_mb").AsDouble()
                       };
 
             return dbs;
@@ -37,12 +37,12 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("mysql-list_hostnames");
 
-            var hostnames = from data in response.Element("response").Elements("data")
+            var hostnames = from data in response.Element("dreamhost").Elements("data")
                             select new DBHostname
                             {
-                                account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                                domain = (string)DreamhostAPI.ParseXMLElement(data.Element("domain")),
-                                home = (string)DreamhostAPI.ParseXMLElement(data.Element("home"))
+                                account_id = data.Element("account_id").AsString(),
+                                domain = data.Element("domain").AsString(),
+                                home = data.Element("home").AsString()
                             };
 
             return hostnames;
@@ -66,22 +66,22 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("mysql-list_users");
 
-            var users = from data in response.Element("response").Elements("data")
+            var users = from data in response.Element("dreamhost").Elements("data")
                         select new DBUser
                         {
-                            account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                            db = (string)DreamhostAPI.ParseXMLElement(data.Element("db")),
-                            home = (string)DreamhostAPI.ParseXMLElement(data.Element("home")),
-                            username = (string)DreamhostAPI.ParseXMLElement(data.Element("username")),
-                            host = (string)DreamhostAPI.ParseXMLElement(data.Element("host")),
-                            select_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("select_priv"), typeof(bool)),
-                            insert_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("insert_priv"), typeof(bool)),
-                            update_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("update_priv"), typeof(bool)),
-                            delete_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("delete_priv"), typeof(bool)),
-                            create_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("create_priv"), typeof(bool)),
-                            drop_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("drop_priv"), typeof(bool)),
-                            index_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("index_priv"), typeof(bool)),
-                            alter_priv = (bool)DreamhostAPI.ParseXMLElement(data.Element("alter_priv"), typeof(bool))
+                            account_id = data.Element("account_id").AsString(),
+                            db = data.Element("db").AsString(),
+                            home = data.Element("home").AsString(),
+                            username = data.Element("username").AsString(),
+                            host = data.Element("host").AsString(),
+                            select_priv = data.Element("select_priv").AsBool(),
+                            insert_priv = data.Element("insert_priv").AsBool(),
+                            update_priv = data.Element("update_priv").AsBool(),
+                            delete_priv = data.Element("delete_priv").AsBool(),
+                            create_priv = data.Element("create_priv").AsBool(),
+                            drop_priv = data.Element("drop_priv").AsBool(),
+                            index_priv = data.Element("index_priv").AsBool(),
+                            alter_priv = data.Element("alter_priv").AsBool()
                         };
 
             return users;

@@ -31,16 +31,16 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("dns-list_records");
 
-            var records = from data in response.Element("response").Elements("data")
+            var records = from data in response.Element("dreamhost").Elements("data")
                           select new DNSRecord
                           {
-                              account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                              comment = (string)DreamhostAPI.ParseXMLElement(data.Element("comment")),
-                              editable = (bool)DreamhostAPI.ParseXMLElement(data.Element("editable"), typeof(bool)),
-                              type = (string)DreamhostAPI.ParseXMLElement(data.Element("type")),
-                              value = (string)DreamhostAPI.ParseXMLElement(data.Element("value")),
-                              record = (string)DreamhostAPI.ParseXMLElement(data.Element("record")),
-                              zone = (string)DreamhostAPI.ParseXMLElement(data.Element("zone"))
+                              account_id = data.Element("account_id").AsString(),
+                              comment = data.Element("comment").AsString(),
+                              editable = data.Element("editable").AsBool(),
+                              type = data.Element("type").AsString(),
+                              value = data.Element("value").AsString(),
+                              record = data.Element("record").AsString(),
+                              zone = data.Element("zone").AsString()
                           };
 
             return records;

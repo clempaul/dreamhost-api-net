@@ -40,13 +40,13 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("dreamhost_ps-list_pending_ps");
 
-            return from data in response.Element("response").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                    select new PendingPS
                    {
-                       account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                       ip = (string)DreamhostAPI.ParseXMLElement(data.Element("ip")),
-                       stamp = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("stamp"), typeof(DateTime)),
-                       type = (string)DreamhostAPI.ParseXMLElement(data.Element("type"))
+                       account_id = data.Element("account_id").AsString(),
+                       ip = data.Element("ip").AsString(),
+                       stamp = data.Element("stamp").AsDateTime(),
+                       type = data.Element("type").AsString()
                    };
 
         }
@@ -55,13 +55,13 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("dreamhost_ps-remove_pending_ps");
 
-            return from data in response.Element("response").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                    select new PendingPS
                    {
-                       account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                       ip = (string)DreamhostAPI.ParseXMLElement(data.Element("ip")),
-                       stamp = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("stamp"), typeof(DateTime)),
-                       type = (string)DreamhostAPI.ParseXMLElement(data.Element("type"))
+                       account_id = data.Element("account_id").AsString(),
+                       ip = data.Element("ip").AsString(),
+                       stamp = data.Element("stamp").AsDateTime(),
+                       type = data.Element("type").AsString()
                    };
         }
 
@@ -69,14 +69,14 @@ namespace clempaul.Dreamhost
         {
             XDocument response = api.SendCommand("dreamhost_ps-list_ps");
 
-            return from data in response.Element("response").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                    select new ActivePS
                    {
-                       account_id = (string)DreamhostAPI.ParseXMLElement(data.Element("account_id")),
-                       memory_mb = (int)DreamhostAPI.ParseXMLElement(data.Element("memory_mb"), typeof(int)),
-                       ps = (string)DreamhostAPI.ParseXMLElement(data.Element("ps")),
-                       start_date = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("start_date"), typeof(DateTime)),
-                       type = (string)DreamhostAPI.ParseXMLElement(data.Element("type"))
+                       account_id = data.Element("account_id").AsString(),
+                       memory_mb = data.Element("memory_mb").AsInt(),
+                       ps = data.Element("ps").AsString(),
+                       start_date = data.Element("start_date").AsDateTime(),
+                       type = data.Element("type").AsString()
                    };
         }
 
@@ -90,9 +90,9 @@ namespace clempaul.Dreamhost
 
             PSSettings result = new PSSettings();
 
-            foreach (XElement data in response.Element("response").Elements("data"))
+            foreach (XElement data in response.Element("dreamhost").Elements("data"))
             {
-                result.set((string)DreamhostAPI.ParseXMLElement(data.Element("setting")), (string)DreamhostAPI.ParseXMLElement(data.Element("value")));
+                result.set(data.Element("setting").AsString(), data.Element("value").AsString());
             }
 
             return result;
@@ -124,14 +124,14 @@ namespace clempaul.Dreamhost
 
             XDocument response = api.SendCommand("dreamhost_ps-list_ps", parameters);
 
-            return from data in response.Element("response").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                    select new PSSize
                    {
-                       stamp = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("stamp"), typeof(DateTime)),
-                       memory_mb = (int)DreamhostAPI.ParseXMLElement(data.Element("memory_mb"), typeof(int)),
-                       period_seconds = (int)DreamhostAPI.ParseXMLElement(data.Element("period_seconds"), typeof(int)),
-                       period_cost = (double)DreamhostAPI.ParseXMLElement(data.Element("period_cost"), typeof(double)),
-                       monthly_cost = (double)DreamhostAPI.ParseXMLElement(data.Element("monthly_cost"), typeof(double))
+                       stamp = data.Element("stamp").AsDateTime(),
+                       memory_mb = data.Element("memory_mb").AsInt(),
+                       period_seconds = data.Element("period_seconds").AsInt(),
+                       period_cost = data.Element("period_cost").AsDouble(),
+                       monthly_cost = data.Element("monthly_cost").AsDouble()
                    };
         }
 
@@ -155,9 +155,9 @@ namespace clempaul.Dreamhost
 
             List<DateTime> result = new List<DateTime>();
 
-            foreach (XElement data in response.Element("response").Elements("data"))
+            foreach (XElement data in response.Element("dreamhost").Elements("data"))
             {
-                result.Add((DateTime)DreamhostAPI.ParseXMLElement(data.Element("stamp"), typeof(DateTime)));
+                result.Add(data.Element("stamp").AsDateTime());
             }
 
             return result;
@@ -180,12 +180,12 @@ namespace clempaul.Dreamhost
 
             XDocument response = api.SendCommand("dreamhost_ps-list_ps", parameters);
 
-            return from data in response.Element("response").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                    select new PSUsage
                    {
-                       stamp = (DateTime)DreamhostAPI.ParseXMLElement(data.Element("stamp"), typeof(DateTime)),
-                       memory_mb = (int)DreamhostAPI.ParseXMLElement(data.Element("memory_mb"), typeof(int)),
-                       load = (double)DreamhostAPI.ParseXMLElement(data.Element("load"), typeof(double))
+                       stamp = data.Element("stamp").AsDateTime(),
+                       memory_mb = data.Element("memory_mb").AsInt(),
+                       load = data.Element("load").AsDouble()
                    };
         }
     }
