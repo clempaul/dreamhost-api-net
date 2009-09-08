@@ -16,6 +16,8 @@ namespace clempaul.Dreamhost
             this.api = api;
         }
 
+        #region mail-list_filters
+
         public IEnumerable<MailFilter> ListFilters()
         {
             XDocument response = api.SendCommand("mail-list_filters");
@@ -37,37 +39,130 @@ namespace clempaul.Dreamhost
             return users;
         }
 
+        #endregion
 
-        public void AddFilter(string address, string filter_on, string filter, string action, string action_value, string contains, string stop, string rank)
+        #region mail-add_filter
+
+        public void AddFilter(MailFilter filter)
         {
-            QueryData[] parameters = {
-                                         new QueryData("address", address),
-                                         new QueryData("filter_on", filter_on),
-                                         new QueryData("filter", filter),
-                                         new QueryData("action", action),
-                                         new QueryData("action_value", action_value),
-                                         new QueryData("contains", contains),
-                                         new QueryData("stop", stop),
-                                         new QueryData("rank", rank)
-                                     };
+            // Check parameters
+
+            if (filter.address == null || filter.address == string.Empty)
+            {
+                throw new Exception("Missing address parameter");
+            }
+            else if (filter.filter_on == null || filter.filter_on == string.Empty)
+            {
+                throw new Exception("Missing filter_on parameter");
+            }
+            else if (filter.filter == null || filter.filter == string.Empty)
+            {
+                throw new Exception("Missing filter parameter");
+            }
+            else if (filter.action == null || filter.action == string.Empty)
+            {
+                throw new Exception("Missing action parameter");
+            }
+            else if ((filter.action != "delete" && filter.action != "and" && filter.action != "or") && (filter.action_value == null || filter.action_value == string.Empty))
+            {
+                throw new Exception("Missing action_value parameter");
+            }
+
+            // Construct Request
+
+            List<QueryData> parameters = new List<QueryData>();
+
+            parameters.Add(new QueryData("address", filter.address));
+            parameters.Add(new QueryData("filter_on", filter.filter_on));
+            parameters.Add(new QueryData("filter", filter.filter));
+            parameters.Add(new QueryData("action", filter.action));
+
+            if (filter.action_value != null && filter.action_value != string.Empty)
+            {
+                parameters.Add(new QueryData("action_value", filter.action_value));
+            }
+
+            if (filter.contains != null)
+            {
+                parameters.Add(new QueryData("contains", filter.contains.Asyesno()));
+            }
+
+            if (filter.stop != null)
+            {
+                parameters.Add(new QueryData("stop", filter.stop.Asyesno()));
+            }
+
+            if (filter.rank != null)
+            {
+                parameters.Add(new QueryData("rank", filter.rank.ToString()));
+            }
 
             api.SendCommand("mail-add_filter", parameters);
         }
 
-        public void RemoveFilter(string address, string filter_on, string filter, string action, string action_value, string contains, string stop, string rank)
+        #endregion
+
+        #region mail-remove_filter
+
+        public void RemoveFilter(MailFilter filter)
         {
-            QueryData[] parameters = {
-                                         new QueryData("address", address),
-                                         new QueryData("filter_on", filter_on),
-                                         new QueryData("filter", filter),
-                                         new QueryData("action", action),
-                                         new QueryData("action_value", action_value),
-                                         new QueryData("contains", contains),
-                                         new QueryData("stop", stop),
-                                         new QueryData("rank", rank)
-                                     };
+            // Check parameters
+
+            if (filter.address == null || filter.address == string.Empty)
+            {
+                throw new Exception("Missing address parameter");
+            }
+            else if (filter.filter_on == null || filter.filter_on == string.Empty)
+            {
+                throw new Exception("Missing filter_on parameter");
+            }
+            else if (filter.filter == null || filter.filter == string.Empty)
+            {
+                throw new Exception("Missing filter parameter");
+            }
+            else if (filter.action == null || filter.action == string.Empty)
+            {
+                throw new Exception("Missing action parameter");
+            }
+            else if ((filter.action != "delete") && (filter.action_value == null || filter.action_value == string.Empty))
+            {
+                throw new Exception("Missing action_value parameter");
+            }
+            else if (filter.contains == null)
+            {
+                throw new Exception("Missing contains parameter");
+            }
+            else if (filter.stop == null)
+            {
+                throw new Exception("Missing stop parameter");
+            }
+            else if (filter.rank == null)
+            {
+                throw new Exception("Missing rank parameter");
+            }
+
+            // Construct Request
+
+            List<QueryData> parameters = new List<QueryData>();
+
+            parameters.Add(new QueryData("address", filter.address));
+            parameters.Add(new QueryData("filter_on", filter.filter_on));
+            parameters.Add(new QueryData("filter", filter.filter));
+            parameters.Add(new QueryData("action", filter.action));
+
+            if (filter.action_value != null && filter.action_value != string.Empty)
+            {
+                parameters.Add(new QueryData("action_value", filter.action_value));
+            }
+
+            parameters.Add(new QueryData("contains", filter.contains.Asyesno()));
+            parameters.Add(new QueryData("stop", filter.stop.Asyesno()));
+            parameters.Add(new QueryData("rank", filter.rank.ToString()));
 
             api.SendCommand("mail-remove_filter", parameters);
         }
+
+        #endregion
+
     }
 }

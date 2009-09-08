@@ -63,17 +63,17 @@ namespace clempaul.Dreamhost.ResponseData
             set { _action_value = value; }
         }
 
-        private bool _contains;
+        private bool? _contains = null;
 
-        public bool contains
+        public bool? contains
         {
             get { return _contains; }
             set { _contains = value; }
         }
 
-        private bool _stop;
+        private bool? _stop = null;
 
-        public bool stop
+        public bool? stop
         {
             get { return _stop; }
             set { _stop = value; }
