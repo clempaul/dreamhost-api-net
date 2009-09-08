@@ -21,21 +21,21 @@ namespace clempaul.Dreamhost.ResponseData
             get { return _zone; }
             set { _zone = value; }
         }
-        private string _type;
+        private string _type = string.Empty;
 
         public string type
         {
             get { return _type; }
             set { _type = value; }
         }
-        private string _value;
+        private string _value = string.Empty;
 
         public string value
         {
             get { return _value; }
             set { _value = value; }
         }
-        private string _comment;
+        private string _comment = string.Empty;
 
         public string comment
         {
@@ -50,7 +50,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _editable = value; }
         }
 
-        private string _record;
+        private string _record = string.Empty;
 
         public string record
         {

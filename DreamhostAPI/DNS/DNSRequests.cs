@@ -25,7 +25,7 @@ namespace clempaul.Dreamhost
 
         #endregion
 
-        #region Methods
+        #region dns-list_records
 
         public IEnumerable<DNSRecord> ListRecords()
         {
@@ -46,29 +46,80 @@ namespace clempaul.Dreamhost
             return records;
         }
 
-        public void AddRecord(string record, string type, string value)
-        {
-            AddRecord(record, type, value, string.Empty);
-        }
+        #endregion
+
+        #region dns-add_record
 
         public void AddRecord(string record, string type, string value, string comment)
         {
-            QueryData[] parameters = new QueryData[4];
+            // Check parameters 
 
-            parameters[0] = new QueryData("record", record);
-            parameters[1] = new QueryData("type", type);
-            parameters[2] = new QueryData("value", value);
+            if (record == null || record == string.Empty)
+            {
+                throw new Exception("Missing record parameter");
+            }
+            else if (type == null || type == string.Empty)
+            {
+                throw new Exception("Missing type parameter");
+            }
+            else if (value == null || value == string.Empty)
+            {
+                throw new Exception("Missing value parameter");
+            }
+
+            // Build request
+
+            List<QueryData> parameters = new List<QueryData>();
+
+            parameters.Add(new QueryData("record", record));
+            parameters.Add(new QueryData("type", type));
+            parameters.Add(new QueryData("value", value));
 
             if (comment != string.Empty && comment != null)
             {
-                parameters[3] = new QueryData("comment", comment);
+                parameters.Add(new QueryData("comment", comment));
             }
 
             api.SendCommand("dns-add_record", parameters);
         }
 
+        /*
+         * Overloads
+         */
+
+        public void AddRecord(string record, string type, string value)
+        {
+            this.AddRecord(record, type, value, string.Empty);
+        }
+
+        public void AddRecord(DNSRecord record)
+        {
+            this.AddRecord(record.record, record.type, record.value, record.comment);
+        }
+
+        #endregion
+
+        #region dns-remove_record
+
         public void RemoveRecord(string record, string type, string value)
         {
+            // Check parameters
+
+            if (record == null || record == string.Empty)
+            {
+                throw new Exception("Missing record parameter");
+            }
+            else if (type == null || type == string.Empty)
+            {
+                throw new Exception("Missing type parameter");
+            }
+            else if (value == null || value == string.Empty)
+            {
+                throw new Exception("Missing value parameter");
+            }
+        
+            // Build request
+
             QueryData[] parameters = {
                                          new QueryData("record", record),
                                          new QueryData("type", type),
@@ -78,6 +129,16 @@ namespace clempaul.Dreamhost
             api.SendCommand("dns-remove_record", parameters);
         }
 
+        /*
+         * Overloads
+         */
+
+        public void RemoveRecord(DNSRecord record)
+        {
+            this.RemoveRecord(record.record, record.type, record.value);
+        }
+
         #endregion
+
     }
 }
