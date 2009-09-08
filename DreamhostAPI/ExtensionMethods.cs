@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace clempaul
 {
-    internal static class ExtensionMethods
+    internal static class DreamhostExtensionMethods
     {
         internal static bool AsBool(this XElement element)
         {
@@ -67,5 +64,33 @@ namespace clempaul
             }
         }
 
+        internal static string AsYYYYMMDD(this DateTime? value)
+        {
+            return ((DateTime)value).ToString("YYYY-MM-DD");
+        }
+
+        internal static string AsBit(this bool value)
+        {
+            if (value)
+            {
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+        }
+
+        internal static string AsBit(this bool? value)
+        {
+            if ((bool)value)
+            {
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+        }
     }
 }

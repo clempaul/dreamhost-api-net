@@ -7,7 +7,7 @@ namespace clempaul.Dreamhost.ResponseData
 {
     public class AnnouncementListSubscriber
     {
-        private string _email;
+        private string _email = string.Empty;
 
         public string email
         {
@@ -31,7 +31,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _subscribe_date = value; }
         }
 
-        private string _name;
+        private string _name = string.Empty;
 
         public string name
         {

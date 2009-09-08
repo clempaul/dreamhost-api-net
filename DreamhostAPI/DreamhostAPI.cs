@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using clempaul.Dreamhost;
 using System.Net;
 using System.IO;
 using System.Xml.Linq;
-
 
 namespace clempaul
 {
@@ -123,6 +121,11 @@ namespace clempaul
             return this.SendCommand(method, new QueryData[0]);
         }
 
+        internal XDocument SendCommand(string method, List<QueryData> parameters)
+        {
+            return this.SendCommand(method, parameters.ToArray());
+        }
+
         internal XDocument SendCommand(string method, QueryData[] parameters)
         {
 
@@ -135,72 +138,6 @@ namespace clempaul
 
             return this.GetResponse(method, parameters);
         }
-
-        //internal static object ParseXMLElement(XElement element)
-        //{
-        //    return DreamhostAPI.ParseXMLElement(element, typeof(string));
-        //}
-
-        //internal static object ParseXMLElement(XElement element, Type type)
-        //{
-        //    if (type.Equals(typeof(bool)))
-        //    {
-        //        if (element == null)
-        //        {
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            return !element.Value.Equals("0") && !element.Value.Equals("no");
-        //        }
-        //    }
-        //    else if (type.Equals(typeof(string)))
-        //    {
-        //        if (element == null)
-        //        {
-        //            return string.Empty;
-        //        }
-        //        else
-        //        {
-        //            return element.Value;
-        //        }
-        //    }
-        //    else if (type.Equals(typeof(DateTime)))
-        //    {
-        //        if (element == null)
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            return DateTime.Parse(element.Value);
-        //        }
-        //    }
-        //    else if (type.Equals(typeof(int)))
-        //    {
-        //        if (element == null)
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            return int.Parse(element.Value);
-        //        }
-        //    }
-        //    else if (type.Equals(typeof(double)))
-        //    {
-        //        if (element == null)
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            return double.Parse(element.Value);
-        //        }
-        //    }
-
-        //    return null;
-        //}
 
         internal XDocument GetResponse(string method, QueryData[] parameters)
         {
@@ -224,8 +161,8 @@ namespace clempaul
             }
 
             wr.ContentLength = postdata.Length;
-            
-            StreamWriter stOut = new StreamWriter(wr.GetRequestStream(),System.Text.Encoding.ASCII);
+
+            StreamWriter stOut = new StreamWriter(wr.GetRequestStream(), System.Text.Encoding.ASCII);
             stOut.Write(postdata);
             stOut.Close();
 
@@ -261,16 +198,14 @@ namespace clempaul
 
         #endregion
 
-        #region Public Methods
+        #region api-list_accessible_cmds
 
         public IEnumerable<String> ListAccessibleMethods()
         {
             XDocument response = this.SendCommand("api-list_accessible_cmds");
 
-            var cmds = from data in response.Element("dreamhost").Elements("data")
+            return from data in response.Element("dreamhost").Elements("data")
                        select data.Element("cmd").AsString();
-
-            return cmds;
         }
 
         #endregion

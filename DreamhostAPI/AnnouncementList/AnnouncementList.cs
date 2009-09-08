@@ -7,7 +7,7 @@ namespace clempaul.Dreamhost.ResponseData
 {
     public class AnnouncementList
     {
-        private string _account_id;
+        private string _account_id = string.Empty;
 
         public string account_id
         {
@@ -15,7 +15,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _account_id = value; }
         }
 
-        private string _listname;
+        private string _listname = string.Empty;
 
         public string listname
         {
@@ -23,7 +23,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _listname = value; }
         }
 
-        private string _domain;
+        private string _domain = string.Empty;
 
         public string domain
         {
@@ -31,7 +31,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _domain = value; }
         }
 
-        private string _name;
+        private string _name = string.Empty;
 
         public string name
         {
