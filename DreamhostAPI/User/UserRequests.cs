@@ -16,6 +16,8 @@ namespace clempaul.Dreamhost
             this.api = api;
         }
 
+        #region user-list_users
+
         public IEnumerable<User> ListUsers()
         {
             XDocument response = api.SendCommand("user-list_users");
@@ -37,6 +39,10 @@ namespace clempaul.Dreamhost
             return users;
         }
 
+        #endregion
+
+        #region user-list_user_no_pw
+
         public IEnumerable<User> ListUsersNoPw()
         {
             XDocument response = api.SendCommand("user-list_users_no_pw");
@@ -56,5 +62,7 @@ namespace clempaul.Dreamhost
 
             return users;
         }
+
+        #endregion
     }
 }

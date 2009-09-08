@@ -13,7 +13,7 @@ namespace clempaul
                 }
                 else
                 {
-                    return !element.Value.Equals("0") && !element.Value.Equals("no");
+                    return !element.Value.Equals("0") && !element.Value.Equals("no") && !element.Value.Equals("N");
                 }
         }
 
@@ -90,6 +90,30 @@ namespace clempaul
             else
             {
                 return "0";
+            }
+        }
+
+        internal static string AsYN(this bool? value)
+        {
+            if ((bool)value)
+            {
+                return "Y";
+            }
+            else
+            {
+                return "N";
+            }
+        }
+
+        internal static string Asyesno(this bool? value)
+        {
+            if ((bool)value)
+            {
+                return "yes";
+            }
+            else
+            {
+                return "no";
             }
         }
     }
