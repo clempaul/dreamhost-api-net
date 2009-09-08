@@ -15,7 +15,7 @@ namespace clempaul.Dreamhost.ResponseData
             set { _account_id = value; }
         }
 
-        private string _domain;
+        private string _domain = string.Empty;
 
         public string domain
         {
