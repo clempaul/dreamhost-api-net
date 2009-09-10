@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using clempaul.Dreamhost.ResponseData;
 using System.Xml.Linq;
+using clempaul.Dreamhost.ResponseData;
 
 namespace clempaul.Dreamhost
 {

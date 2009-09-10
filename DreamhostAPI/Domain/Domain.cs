@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace clempaul.Dreamhost.ResponseData
+﻿namespace clempaul.Dreamhost.ResponseData
 {
     public class Domain
     {
