@@ -18,9 +18,9 @@
             set { _address = value; }
         }
 
-        private int _rank;
+        private int? _rank = null;
 
-        public int rank
+        public int? rank
         {
             get { return _rank; }
             set { _rank = value; }

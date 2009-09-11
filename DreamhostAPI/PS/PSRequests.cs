@@ -230,10 +230,6 @@ namespace clempaul.Dreamhost
             {
                 throw new Exception("Missing ps parameter");
             }
-            else if (size == null)
-            {
-                throw new Exception("Missing size parameter");
-            }
             else if (size < 150 || size > 4000)
             {
                 throw new Exception("Size out of range");
