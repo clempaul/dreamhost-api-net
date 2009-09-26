@@ -69,6 +69,11 @@ namespace clempaul
             return ((DateTime)value).ToString("YYYY-MM-DD");
         }
 
+        internal static string AsTimestamp(this DateTime? value)
+        {
+            return ((DateTime)value).ToString("YYYY-MM-DD HH:mm");
+        }
+
         internal static string AsBit(this bool value)
         {
             if (value)

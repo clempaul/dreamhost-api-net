@@ -231,7 +231,7 @@ namespace clempaul.Dreamhost
 
             if (announcement.stamp != null)
             {
-                parameters.Add(new QueryData("stamp", announcement.stamp.AsYYYYMMDD()));
+                parameters.Add(new QueryData("stamp", announcement.stamp.AsTimestamp()));
             }
 
             if (announcement.charset != null && announcement.charset != string.Empty)
