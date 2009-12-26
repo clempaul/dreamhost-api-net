@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AccountRequests.cs" />
+    <Compile Include="Account\DomainUsage.cs" />
+    <Compile Include="Account\UserUsage.cs" />
     <Compile Include="AnnouncementList\Announcement.cs" />
     <Compile Include="AnnouncementList\AnnouncementList.cs" />
     <Compile Include="AnnouncementList\AnnouncementListRequests.cs" />
@@ -64,6 +67,11 @@
     <Compile Include="MySQL\DBHostname.cs" />
     <Compile Include="MySQL\DBUser.cs" />
     <Compile Include="MySQL\MySQLRequests.cs" />
+    <Compile Include="OneClick\DestroyResult.cs" />
+    <Compile Include="OneClick\OneClick.cs" />
+    <Compile Include="OneClick\OneClickAdvanced.cs" />
+    <Compile Include="OneClick\OneClickInstall.cs" />
+    <Compile Include="OneClick\OneClickRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PS\ActivePS.cs" />
     <Compile Include="PS\PendingPS.cs" />

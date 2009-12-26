@@ -13,12 +13,15 @@ namespace clempaul
         #region Private Variables
 
         private string apikey = string.Empty;
+        private string accountNumber = string.Empty;
         private DomainRequests domain = null;
         private DNSRequests dns = null;
         private UserRequests user = null;
         private MailRequests mail = null;
         private MySQLRequests mysql = null;
         private AnnouncementListRequests announcementlist = null;
+        private AccountRequests account = null;
+        private OneClickRequests oneclick = null;
 
         #endregion
 
@@ -27,6 +30,12 @@ namespace clempaul
         public DreamhostAPI(string apikey)
         {
             this.apikey = apikey;
+        }
+
+        public DreamhostAPI(string apikey, string accountNumber)
+        {
+            this.apikey = apikey;
+            this.accountNumber = accountNumber;
         }
 
         #endregion
@@ -112,6 +121,32 @@ namespace clempaul
             }
         }
 
+        public AccountRequests Account
+        {
+            get
+            {
+                if (this.account == null)
+                {
+                    this.account = new AccountRequests(this);
+                }
+
+                return this.account;
+            }
+        }
+
+        public OneClickRequests OneClick
+        {
+            get
+            {
+                if (this.oneclick == null)
+                {
+                    this.oneclick = new OneClickRequests(this);
+                }
+
+                return this.oneclick;
+            }
+        }
+
         #endregion
 
         #region Internal Methods
@@ -154,6 +189,11 @@ namespace clempaul
             postdata += "&unique_id=" + Uri.EscapeDataString(Guid.NewGuid().ToString());
             postdata += "&format=xml";
             postdata += "&cmd=" + Uri.EscapeDataString(method);
+
+            if (this.accountNumber != string.Empty)
+            {
+                postdata += "&account=" + Uri.EscapeDataString(this.accountNumber);
+            }
 
             foreach (QueryData parameter in parameters)
             {
